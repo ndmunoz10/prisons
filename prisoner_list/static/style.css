@@ -1,0 +1,114 @@
+p {
+    color: green;
+}
+body {
+    background: url("images/header_background.png") no-repeat;
+    margin: 0;
+}
+@font-face {
+    font-family: "Alcatraz";
+    src: url('fonts/alcatraz.ttf');
+}
+
+#horizontal-centered-yellow-colored {
+    color: #f2d6a0;
+    text-align: center;
+    line-height: 80px;
+    font-size: 40px;
+    font-family: "Alcatraz", serif;
+}
+
+#header-item-left {
+    float: left;
+    width: 33.3%;
+    text-align: center;
+    font-size: 30px;
+}
+
+#header-item-center {
+    width: 33.3%;
+    display: inline-block;
+    margin:0 auto;
+    text-align: right;
+}
+
+#header-item-right {
+    float: right;
+    width: 33.3%;
+    text-align: center;
+}
+
+#prisoner_search {
+    width: 70%;
+    height: 30px;
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 66.66%;
+}
+
+th {
+    background-color: #f2d6a0;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    padding: 8px;
+}
+
+#delete-button {
+    background: url("images/trash.png");
+}
+
+.page-main{
+    padding: 10px;
+    height: auto;
+    overflow: hidden;
+}
+
+.page-content{
+    background-color: red;
+    width: auto;
+    overflow: hidden;
+}
+
+.page-side {
+    float: right;
+    width: 350px;
+    height: 100%;
+    position: fixed;
+    right: 0;
+    background-color: black;
+    margin-top: 15px;
+}
+
+.prisoner_add_form {
+    display: grid;
+    place-items: center;
+    margin: 0;
+}
+
+.prisoner_add_form label, .prisoner_add_form input {
+    display: block;
+    width: 200px;
+    height: 50px;
+    font-size: 20px;
+    border-radius: 8px;
+    border: 0;
+}
+
+#submit_prisoner {
+    background-color: forestgreen;
+    color: white;
+    border-radius: 8px;
+}
+
+.page-side p {
+    display: block;
+    color: white;
+    text-align: center;
+    font-size: 24px;
+    font-style: italic;
+}

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet">
+</head>
+<body>
+<div id="horizontal-centered-yellow-colored">La prisión mortal</div>
+<div class="page-side">
+        <p style="font-family: 'Ubuntu'">Agregar prisionero</p>
+        <form class="prisoner_add_form" method="post" action="{% url 'add-prisoner' %}">
+            {% csrf_token %}
+            <label style="height: 0" for="prisoner_code"></label>
+            <input id="prisoner_code" placeholder="Código" type="text" name="code">
+            <label style="height: 15px" for="prisoner_name"></label>
+            <input id="prisoner_name" placeholder="Nombre" type="text" name="name">
+            <label style="height: 15px" for="prisoner_date_birth"></label>
+            <input id="prisoner_date_birth" type="date" name="date">
+            <label style="height: 15px" for="prisoner_gender"></label>
+            <input id="prisoner_gender" placeholder="Género" type="text" name="gender">
+            <label style="height: 15px" for="prisoner_race"></label>
+            <input id="prisoner_race" placeholder="Raza" type="text" name="race">
+            <label style="height: 15px" for="submit_prisoner"></label>
+            <input id="submit_prisoner" value="Agregar" type="submit">
+        </form>
+    </div>
+<div style="margin-top: 30px">
+    <div id="header-item-left" style="font-family: 'Ubuntu', sans-serif">
+        Lista de prisioneros
+    </div>
+    <div id="header-item-center">
+        <form method="post">
+            <label for="prisoner_search"></label>
+            <input style="border-radius: 8px" id="prisoner_search" type="text">
+            <input type="submit" value="Buscar"/>
+        </form>
+    </div>
+</div>
+<div>
+    {% if prisoner_list %}
+        <table>
+        <tr>
+            <th>Código</th>
+            <th>Nombre</th>
+            <th>Fecha de nacimiento</th>
+            <th>Sexo</th>
+            <th>Raza</th>
+        </tr>
+        {% for prisoner in prisoner_list %}
+            <tr>
+                <td>{{ prisoner.code }}</td>
+                <td>{{ prisoner.name }}</td>
+                <td>{{ prisoner.birth_date }}</td>
+                <td>{{ prisoner.gender }}</td>
+                <td>{{ prisoner.race }}</td>
+                <td>
+                    <form method="post" action="{% url 'delete-prisoner' prisoner.code %}">
+                        {% csrf_token %}
+                        <input type="image" alt="Delete" src="{% static "images/trash.png" %}">
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+    {% else %}
+        <p style="font-family: 'Alcatraz'">No prisoners are available.</p>
+    {% endif %}
+    </table>
+</div>
+</body>
+</html>
