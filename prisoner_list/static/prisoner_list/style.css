@@ -3,7 +3,8 @@ p {
 }
 body {
     background: url("images/header_background.png") no-repeat;
-    margin: 0;
+    margin: 0 auto;
+    background-size: 100%;
 }
 @font-face {
     font-family: "Alcatraz";
@@ -81,13 +82,30 @@ td, th {
     position: fixed;
     right: 0;
     background-color: black;
-    margin-top: 15px;
+    margin-top: 70px;
 }
 
 .prisoner_add_form {
     display: grid;
     place-items: center;
     margin: 0;
+    font-family: "Ubuntu", sans-serif;
+}
+
+#logout_button {
+    margin: 30px auto;
+    display:block;
+    height: 30px;
+    width: 60%;
+    background-color: midnightblue;
+    border-radius: 25px;
+}
+
+#logout_button a {
+    color: white;
+    font-family: "Ubuntu", sans-serif;
+    font-size: 16px;
+    text-decoration: none;
 }
 
 .prisoner_add_form label, .prisoner_add_form input {

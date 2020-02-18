@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
     {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'prisoner_list/style.css' %}">
     <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -26,8 +26,11 @@
             <label style="height: 15px" for="submit_prisoner"></label>
             <input id="submit_prisoner" value="Agregar" type="submit">
         </form>
+    <button id="logout_button">
+        <a href="{% url 'logout' %}">Cerrar sesión</a>
+    </button>
     </div>
-<div style="margin-top: 30px">
+<div style="margin-top: 100px">
     <div id="header-item-left" style="font-family: 'Ubuntu', sans-serif">
         Lista de prisioneros
     </div>
@@ -39,7 +42,7 @@
         </form>
     </div>
 </div>
-<div>
+<div style="margin-top: 20px">
     {% if prisoner_list %}
         <table>
         <tr>
@@ -59,7 +62,7 @@
                 <td>
                     <form method="post" action="{% url 'delete-prisoner' prisoner.code %}">
                         {% csrf_token %}
-                        <input type="image" alt="Delete" src="{% static "images/trash.png" %}">
+                        <input type="image" alt="Delete" src="{% static "prisoner_list/images/trash.png" %}">
                     </form>
                 </td>
             </tr>

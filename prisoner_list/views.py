@@ -5,22 +5,26 @@ from django.http import HttpResponse, HttpResponseRedirect
 from .models import Prisoner
 from django.template import loader
 from django.shortcuts import redirect
+from django.contrib.auth.decorators import login_required
 
 
+@login_required(login_url='/login/', redirect_field_name=None)
 def index(request):
     prisoner_list = Prisoner.objects.order_by("code")
-    template = loader.get_template("prisoners.html")
+    template = loader.get_template("prisoner_list/prisoners.html")
     context = {
         "prisoner_list": prisoner_list
     }
     return HttpResponse(template.render(context, request))
 
 
+@login_required(login_url='/login/', redirect_field_name=None)
 def delete(request, prisoner_id):
     Prisoner.objects.get(pk=prisoner_id).delete()
-    return redirect('/prisoner-list')
+    return redirect('/')
 
 
+@login_required(login_url='/login/', redirect_field_name=None)
 def add_prisoner(request):
     data = request.POST
     code = data.get('code', '')
@@ -37,7 +41,7 @@ def add_prisoner(request):
     Prisoner.objects.create(
         code=code, name=name, birth_date=date, gender=gender, race=race
     ).save()
-    return redirect('/prisoner-list')
+    return redirect('/')
 
 
 def user_exists(prisoner_id):
