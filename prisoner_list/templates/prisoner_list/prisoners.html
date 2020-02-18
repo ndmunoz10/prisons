@@ -35,9 +35,10 @@
         Lista de prisioneros
     </div>
     <div id="header-item-center">
-        <form method="post">
+        <form method="post" action="{% url 'search-prisoner' %}">
+            {% csrf_token %}
             <label for="prisoner_search"></label>
-            <input style="border-radius: 8px" id="prisoner_search" type="text">
+            <input style="border-radius: 8px" id="prisoner_search" type="text" name="user_input">
             <input type="submit" value="Buscar"/>
         </form>
     </div>

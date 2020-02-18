@@ -44,6 +44,21 @@ def add_prisoner(request):
     return redirect('/')
 
 
+@login_required(login_url='/login/', redirect_field_name=None)
+def search_prisoner(request):
+    if request.method == 'POST':
+        form_data = request.POST
+        user_input = form_data['user_input']
+        prisoner_list = Prisoner.objects.filter(name__contains=user_input)
+        template = loader.get_template("prisoner_list/prisoners.html")
+        context = {
+            "prisoner_list": prisoner_list
+        }
+        return HttpResponse(template.render(context, request))
+    else:
+        redirect('/')
+
+
 def user_exists(prisoner_id):
     prisoner = Prisoner.objects.get(pk=prisoner_id)
     return prisoner is not None
